@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oh, the Data You'll Find</title>
+    <link rel="stylesheet" href="../static/styles/styles.css" />
+  </head>
+  <body>
+    <div class="space-input">
+      <input type="text" id="search-input" placeholder="I'll go to..." />
+      <button class="send-button" onclick="search()">></button>
+    </div>
+    <script>
+      function search() {
+        const input = document.getElementById("search-input").value;
+        fetch("/search", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ query: input }),
+        }).catch((error) => {
+          console.error("Error:", error);
+        });
+      }
+    </script>
+  </body>
+</html>
